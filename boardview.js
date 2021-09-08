@@ -19,7 +19,7 @@ class BoardView {
     }
   }
 
-  check_bar_collisions() {
+  checkBarCollisions() {
     for (let i = this.board.bars.length - 1; i >= 0; i--) {
       let bar = this.board.bars[i];
       if (this.hit(bar, this.board.ball, this.board)) {
@@ -28,21 +28,45 @@ class BoardView {
     }
   }
 
-  check_wall_collisions() {
+  checkWallCollisions() {
     for (let i = this.board.bars.length - 1; i >= 0; i--) {
       let bar = this.board.bars[i];
-      if (this.hit_wall(this.board.ball, this.board)) {
-        this.board.ball.wall_collision();
+      if (this.hitWall(this.board.ball, this.board)) {
+        this.board.ball.wallCollision();
       }
     }
+  }
+
+  checkScore() {
+    for (let i = this.board.bars.length - 1; i >= 0; i--) {
+      let bar = this.board.bars[i];
+      if (this.score(this.board.ball, this.board)) {
+        bar.sumPoint();
+        setTimeout(() => {
+          this.board.playing = !this.board.playing;
+        }, 20);
+
+        this.board.ball.reset();
+      }
+    }
+  }
+
+  score(ball, board) {
+    let hit = false;
+    //Colision con muros verticales
+    if (ball.x + ball.radius >= board.width || ball.x - ball.radius <= 0) {
+      hit = true;
+    }
+    return hit;
   }
 
   play() {
     if (this.board.playing) {
       this.clean();
       this.draw();
-      this.check_bar_collisions();
-      this.check_wall_collisions();
+      this.checkBarCollisions();
+      this.checkWallCollisions();
+      this.checkScore();
       this.board.ball.move();
     }
   }
@@ -67,7 +91,7 @@ class BoardView {
     return hit;
   }
 
-  hit_wall(ball, board) {
+  hitWall(ball, board) {
     let hit = false;
     //Colision con muros
     if (ball.y + ball.radius >= board.height || ball.y - ball.radius <= 0) {
@@ -89,4 +113,12 @@ function draw(ctx, element) {
       ctx.closePath();
       break;
   }
+}
+
+function drawScore(x, y, score) {
+  ctx.fillStyle = "#fff";
+  ctx.font = "35px sans-serif";
+
+  // syntax --> fillText(text, x, y)
+  ctx.fillText(score, x, y);
 }

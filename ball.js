@@ -34,9 +34,7 @@ class Ball {
     else this.direction = 1;
   }
 
-  wall_collision() {
-    // Reacciona a la colisión con una barra que recibe como parámetro
-
+  wallCollision() {
     this.bounce_angle = -this.bounce_angle;
     console.log(this.bounce_angle);
     this.speed_y = this.speed * Math.sin(this.bounce_angle);
@@ -49,5 +47,10 @@ class Ball {
 
   get height() {
     return this.radius * 2;
+  }
+
+  reset() {
+    this.x = 500;
+    this.y = 250;
   }
 }
