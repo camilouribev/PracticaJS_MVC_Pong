@@ -27,6 +27,5 @@ class Bar {
 
   sumPoint() {
     this.score++;
-    console.log(this.board.bars);
   }
 }

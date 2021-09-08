@@ -1,6 +1,6 @@
 let board = new Board(1000, 600);
-let bar = new Bar(5, 150, 40, 100, board);
-let bar_2 = new Bar(955, 150, 40, 100, board);
+let bar = new Bar(0, 150, 20, 100, board);
+let bar_2 = new Bar(980, 150, 20, 100, board);
 let canvas = document.getElementById("canvas");
 let board_view = new BoardView(canvas, board);
 let ball = new Ball(500, 250, 10, board);

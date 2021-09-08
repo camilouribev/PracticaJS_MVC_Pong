@@ -1,0 +1,41 @@
+canvas {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+
+  display: block;
+  width: 800px;
+  border: solid;
+  background-color: rgba(228, 228, 228, 0.637);
+}
+h1 {
+  color: #111;
+  font-family: "Helvetica Neue", sans-serif;
+  margin-bottom: 0%;
+  font-size: 80px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1;
+  text-align: center;
+  margin: 20px 0 20px;
+}
+h2 {
+  color: #111;
+  font-family: "Open Sans", sans-serif;
+  font-size: 25px;
+  font-weight: 300;
+  line-height: 32px;
+  margin: 0 0 20px;
+  text-align: center;
+}
+
+ol {
+  display: table;
+  margin: 25px auto;
+  color: #111;
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 32px;
+}

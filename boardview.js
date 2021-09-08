@@ -64,11 +64,11 @@ class BoardView {
 
   play() {
     if (this.board.playing) {
-      if (this.board.bars[0].score >= 2) {
+      if (this.board.bars[0].score >= 3) {
         alert("GANÓ LA BARRA ROJA!!!!");
         location.reload();
       }
-      if (this.board.bars[1].score >= 2) {
+      if (this.board.bars[1].score >= 3) {
         alert("GANÓ LA BARRA AZUL!!");
         location.reload();
       }
@@ -118,16 +118,16 @@ function draw(ctx, element) {
         case 0:
           ctx.fillStyle = "red";
           ctx.fillRect(element.x, element.y, element.width, element.height);
-          ctx.fillStyle = "black";
-          ctx.font = "35px sans-serif";
+          ctx.fillStyle = "red";
+          ctx.font = "40px sans-serif";
           ctx.fillText(element.score, 150, 50);
 
           break;
         case 1:
           ctx.fillStyle = "blue";
           ctx.fillRect(element.x, element.y, element.width, element.height);
-          ctx.fillStyle = "black";
-          ctx.font = "35px sans-serif";
+          ctx.fillStyle = "blue";
+          ctx.font = "40px sans-serif";
           ctx.fillText(element.score, 850, 50);
           break;
       }
@@ -135,7 +135,7 @@ function draw(ctx, element) {
     case "circle":
       ctx.beginPath();
       ctx.arc(element.x, element.y, element.radius, 0, 7);
-
+      ctx.fillStyle = "black";
       ctx.fill();
 
       ctx.closePath();
