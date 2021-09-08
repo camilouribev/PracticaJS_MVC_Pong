@@ -4,7 +4,7 @@ class Ball {
     this.y = y;
     this.radius = radius;
     this.speed_y = 0;
-    this.speed_x = 3;
+    this.speed_x = 4;
     this.board = board;
     this.direction = -1;
     this.bounce_angle = 0;
@@ -32,6 +32,15 @@ class Ball {
 
     if (this.x > this.board.width / 2) this.direction = -1;
     else this.direction = 1;
+  }
+
+  wall_collision() {
+    // Reacciona a la colisión con una barra que recibe como parámetro
+
+    this.bounce_angle = -this.bounce_angle;
+    console.log(this.bounce_angle);
+    this.speed_y = this.speed * Math.sin(this.bounce_angle);
+    this.speed_x = this.speed * Math.cos(this.bounce_angle);
   }
 
   get width() {

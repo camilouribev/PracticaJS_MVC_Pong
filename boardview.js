@@ -19,11 +19,20 @@ class BoardView {
     }
   }
 
-  check_collisions() {
+  check_bar_collisions() {
     for (let i = this.board.bars.length - 1; i >= 0; i--) {
       let bar = this.board.bars[i];
-      if (this.hit(bar, this.board.ball)) {
+      if (this.hit(bar, this.board.ball, this.board)) {
         this.board.ball.collision(bar);
+      }
+    }
+  }
+
+  check_wall_collisions() {
+    for (let i = this.board.bars.length - 1; i >= 0; i--) {
+      let bar = this.board.bars[i];
+      if (this.hit_wall(this.board.ball, this.board)) {
+        this.board.ball.wall_collision();
       }
     }
   }
@@ -32,7 +41,8 @@ class BoardView {
     if (this.board.playing) {
       this.clean();
       this.draw();
-      this.check_collisions();
+      this.check_bar_collisions();
+      this.check_wall_collisions();
       this.board.ball.move();
     }
   }
@@ -54,6 +64,15 @@ class BoardView {
       if (a.y <= b.y && a.y + a.height >= b.y + b.height) hit = true;
     }
 
+    return hit;
+  }
+
+  hit_wall(ball, board) {
+    let hit = false;
+    //Colision con muros
+    if (ball.y + ball.radius >= board.height || ball.y - ball.radius <= 0) {
+      hit = true;
+    }
     return hit;
   }
 }
