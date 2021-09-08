@@ -41,9 +41,9 @@ class BoardView {
     // Revisa si la bola sale del tablero y asigna el punto dependiendo de la posicion de la bola
     if (this.score(this.board.ball, this.board)) {
       if (this.board.ball.x < 500) {
-        this.board.bars[0].sumPoint();
-      } else {
         this.board.bars[1].sumPoint();
+      } else {
+        this.board.bars[0].sumPoint();
       }
 
       setTimeout(() => {
@@ -116,12 +116,19 @@ function draw(ctx, element) {
     case "rectangle":
       switch (element.id) {
         case 0:
+          ctx.fillStyle = "red";
           ctx.fillRect(element.x, element.y, element.width, element.height);
           ctx.fillStyle = "black";
+          ctx.font = "35px sans-serif";
+          ctx.fillText(element.score, 150, 50);
+
           break;
         case 1:
-          ctx.fillRect(element.x, element.y, element.width, element.height);
           ctx.fillStyle = "blue";
+          ctx.fillRect(element.x, element.y, element.width, element.height);
+          ctx.fillStyle = "black";
+          ctx.font = "35px sans-serif";
+          ctx.fillText(element.score, 850, 50);
           break;
       }
       break;
@@ -130,8 +137,9 @@ function draw(ctx, element) {
       ctx.arc(element.x, element.y, element.radius, 0, 7);
 
       ctx.fill();
-      ctx.fillStyle = "red";
+
       ctx.closePath();
+      ctx.fillStyle = "red";
       break;
   }
 }
