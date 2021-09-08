@@ -7,16 +7,23 @@ class Bar {
     this.board = board;
     this.board.bars.push(this);
     this.kind = "rectangle";
-    this.speed = 5;
+    this.speed = 12;
   }
 
   down() {
+    if (this.y >= 500) {
+      return;
+    }
     this.y += this.speed;
   }
   up() {
+    if (this.y <= 0) {
+      return;
+    }
     this.y -= this.speed;
+    this.toString();
   }
   toString() {
-    return "x: " + this.x + " y: " + this.y;
+    return console.log("x: " + this.x + " y: " + this.y);
   }
 }
