@@ -9,6 +9,7 @@ class Bar {
     this.kind = "rectangle";
     this.speed = 12;
     this.score = 0;
+    this.id = this.board.bars.indexOf(this);
   }
 
   down() {
@@ -26,6 +27,6 @@ class Bar {
 
   sumPoint() {
     this.score++;
-    console.log(this.score);
+    console.log(this.board.bars);
   }
 }

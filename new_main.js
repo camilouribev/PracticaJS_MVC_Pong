@@ -1,11 +1,9 @@
-function game() {}
-
 let board = new Board(1000, 600);
 let bar = new Bar(5, 150, 40, 100, board);
 let bar_2 = new Bar(955, 150, 40, 100, board);
 let canvas = document.getElementById("canvas");
 let board_view = new BoardView(canvas, board);
-let ball = new Ball(350, 100, 10, board);
+let ball = new Ball(500, 250, 10, board);
 
 document.addEventListener("keydown", function (ev) {
   if (ev.keyCode == 38) {

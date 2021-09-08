@@ -38,16 +38,18 @@ class BoardView {
   }
 
   checkScore() {
-    for (let i = this.board.bars.length - 1; i >= 0; i--) {
-      let bar = this.board.bars[i];
-      if (this.score(this.board.ball, this.board)) {
-        bar.sumPoint();
-        setTimeout(() => {
-          this.board.playing = !this.board.playing;
-        }, 20);
-
-        this.board.ball.reset();
+    // Revisa si la bola sale del tablero y asigna el punto dependiendo de la posicion de la bola
+    if (this.score(this.board.ball, this.board)) {
+      if (this.board.ball.x < 500) {
+        this.board.bars[0].sumPoint();
+      } else {
+        this.board.bars[1].sumPoint();
       }
+
+      setTimeout(() => {
+        this.board.playing = !this.board.playing;
+      }, 20);
+      this.board.ball.reset();
     }
   }
 
@@ -62,6 +64,14 @@ class BoardView {
 
   play() {
     if (this.board.playing) {
+      if (this.board.bars[0].score >= 2) {
+        alert("GANÓ LA BARRA ROJA!!!!");
+        location.reload();
+      }
+      if (this.board.bars[1].score >= 2) {
+        alert("GANÓ LA BARRA AZUL!!");
+        location.reload();
+      }
       this.clean();
       this.draw();
       this.checkBarCollisions();
@@ -104,21 +114,24 @@ class BoardView {
 function draw(ctx, element) {
   switch (element.kind) {
     case "rectangle":
-      ctx.fillRect(element.x, element.y, element.width, element.height);
+      switch (element.id) {
+        case 0:
+          ctx.fillRect(element.x, element.y, element.width, element.height);
+          ctx.fillStyle = "black";
+          break;
+        case 1:
+          ctx.fillRect(element.x, element.y, element.width, element.height);
+          ctx.fillStyle = "blue";
+          break;
+      }
       break;
     case "circle":
       ctx.beginPath();
       ctx.arc(element.x, element.y, element.radius, 0, 7);
+
       ctx.fill();
+      ctx.fillStyle = "red";
       ctx.closePath();
       break;
   }
-}
-
-function drawScore(x, y, score) {
-  ctx.fillStyle = "#fff";
-  ctx.font = "35px sans-serif";
-
-  // syntax --> fillText(text, x, y)
-  ctx.fillText(score, x, y);
 }
