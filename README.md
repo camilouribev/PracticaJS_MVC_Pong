@@ -1,5 +1,6 @@
 # PracticaJS_MVC_Pong
 
+## Juego desplegado: https://camilouribev.github.io/PracticaJS_MVC_Pong/
 
 ## Preguntas sobre javascript
 
